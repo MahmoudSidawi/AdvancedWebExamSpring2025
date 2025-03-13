@@ -2,6 +2,5 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('Students', StudentController::class);
+Route::resource('Courses', CoursesController::class);

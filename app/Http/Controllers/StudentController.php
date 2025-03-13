@@ -61,4 +61,22 @@ class StudentController extends Controller
     {
         //
     }
+    public function search(Request $request){
+        if($request->ajax()){
+            $output = '';
+            $studnets = Student::where('name','LIKE','%'.$request->search.'%')->get();
+
+            if($studnets){
+                foreach($studnets as $studnet){
+                    $output.= '<li>
+                               '.$studnet->name.'
+                               '.$studnet->age.'
+                               <li> ';
+                            }
+                return response()->json($output);
+            }
+        }
+        return view('recipes.search');
+    }
+
 }
